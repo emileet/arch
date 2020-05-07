@@ -13,5 +13,5 @@ docker build --tag emileet/arch .
 
 now spin up a container (optionally configure `start.sh` to your needs)
 ```shell
-sh start.sh arcx
+sh start.sh arxc
 ```
