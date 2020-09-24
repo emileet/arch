@@ -1,17 +1,17 @@
 # emileet/arch
 
-the arch experience in a docker container
+the arch experience in a container
 
 ## instructions
 
-clone this repo then build a docker image (optionally configure `Dockerfile` to your needs)
+clone this repo and then build an image
 
 ```shell
 cd arch
-docker build --tag emileet/arch .
+docker build --tag emileet/arch --build-arg username=emileet .
 ```
 
-now spin up a container (optionally configure `start.sh` to your needs)
+now spin up a container
 ```shell
-sh start.sh arxc
+docker run -ti --name arch emileet/arch
 ```
