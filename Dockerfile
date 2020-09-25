@@ -6,7 +6,7 @@ ARG username=emileet
 
 # install useful packages
 RUN pacman -Syu --noconfirm && \
-    pacman -S base-devel devtools nano sudo zsh --noconfirm && \
+    pacman -S base-devel devtools nano pigz sudo zsh --noconfirm && \
     pacman -Scc --noconfirm
 
 # setup environment
@@ -14,7 +14,7 @@ RUN echo "$username ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     useradd -m -G wheel -s /bin/zsh $username && \
     chsh -s /bin/zsh
 
-# setup oh-my-zsh
+# install oh-my-zsh
 RUN sudo -u $username sh -c 'yes | bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"' && \
     chown -R root:root /home/$username/.oh-my-zsh && \
     ln -s /home/$username/.zshrc /root/.zshrc
@@ -25,7 +25,8 @@ RUN git clone https://aur.archlinux.org/yay.git && \
     sudo -u $username makepkg -cfirs --noconfirm && \
     cd .. && rm -rf yay
 
-# custom .zshrc
+# install configs
 COPY .zshrc /home/$username
+COPY makepkg.conf /etc
 
 CMD ["/bin/zsh"]
