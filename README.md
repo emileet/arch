@@ -1,6 +1,6 @@
 # emileet/arch
 
-the arch experience in a container
+the arch experience in a container (intended as a build/packaging environment)
 
 ## instructions
 
