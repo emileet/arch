@@ -13,5 +13,5 @@ docker build --tag emileet/arch --build-arg username=emileet .
 
 now spin up a container
 ```shell
-docker run -ti --name arch emileet/arch
+docker run -ti --rm --name arch emileet/arch
 ```

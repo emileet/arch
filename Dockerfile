@@ -15,7 +15,7 @@ RUN echo "$username ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     chsh -s /bin/zsh
 
 # install oh-my-zsh
-RUN sudo -u $username sh -c 'yes | bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"' && \
+RUN sudo -u $username sh -c 'yes | zsh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"' && \
     chown -R root:root /home/$username/.oh-my-zsh && \
     ln -s /home/$username/.zshrc /root/.zshrc
 
@@ -25,8 +25,9 @@ RUN git clone https://aur.archlinux.org/yay.git && \
     sudo -u $username makepkg -cfirs --noconfirm && \
     cd .. && rm -rf yay
 
-# install configs
+# install configs and scripts
 COPY .zshrc /home/$username
 COPY makepkg.conf /etc
+COPY leet.sh /emi/
 
-CMD ["/bin/zsh"]
+CMD ["/bin/zsh", "/emi/leet.sh"]
