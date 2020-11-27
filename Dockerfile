@@ -6,11 +6,12 @@ ARG username=emileet
 
 # install useful packages
 RUN pacman -Syu --noconfirm && \
-    pacman -S base-devel devtools nano pacman-contrib pigz sudo zsh --noconfirm && \
+    pacman -S base-devel devtools nano pacman-contrib pigz reflector sudo zsh --noconfirm && \
     pacman -Scc --noconfirm
 
 # setup environment
-RUN echo "$username ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+RUN reflector --latest 5 --sort rate --save /etc/pacman.d/mirrorlist && \
+    echo "$username ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     useradd -m -G wheel -s /bin/zsh $username && \
     chsh -s /bin/zsh
 
