@@ -1,4 +1,5 @@
 # emileet/arch
+[![pipeline status](https://git.plsnobully.me/emileet/arch/badges/master/pipeline.svg)](https://git.plsnobully.me/emileet/arch/-/commits/master)
 
 the arch experience in a container (intended as a build/packaging environment)
 
