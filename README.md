@@ -12,6 +12,12 @@ cd arch
 docker build --tag emileet/arch --build-arg username=emileet .
 ```
 
+alternatively, pull the image from the pod.plsnobully.me container registry
+
+```shell
+docker pull pod.plsnobully.me/emileet/arch:latest
+```
+
 now spin up a container
 ```shell
 docker run -ti --rm --name arch emileet/arch
