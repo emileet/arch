@@ -1,4 +1,4 @@
-FROM archlinux/base:latest
+FROM archlinux:latest
 MAINTAINER Emily Maré (emileet) <emileet@plsnobully.me>
 
 # variables
@@ -6,7 +6,7 @@ ARG username=emileet
 
 # install useful packages
 RUN pacman -Syu --noconfirm && \
-    pacman -S base-devel devtools nano pacman-contrib pigz reflector sudo zsh --noconfirm && \
+    pacman -S base-devel devtools nano pacman-contrib pigz reflector sudo zsh --needed --noconfirm && \
     pacman -Scc --noconfirm
 
 # setup environment
