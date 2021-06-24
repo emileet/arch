@@ -1,12 +1,12 @@
 build:
-  image: docker:latest
+  image: archlinux:latest
   stage: build
-  services:
-    - docker:dind
   before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - pacman -Syu --noconfirm
+    - pacman -S buildah podman --noconfirm
+    - podman login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
-    - docker push "$CI_REGISTRY_IMAGE"
+    - buildah bud --pull -t "$CI_REGISTRY_IMAGE" .
+    - buildah push "$CI_REGISTRY_IMAGE"
   only:
     - master
