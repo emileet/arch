@@ -25,6 +25,7 @@ RUN git clone https://aur.archlinux.org/yay.git && \
     chown -R $username:$username yay && cd yay && \
     sudo -u $username makepkg -cfrs --noconfirm && \
     pacman -U *.pkg.tar.zst --noconfirm && \
+    rm /var/cache/pacman/pkg/* && \
     cd .. && rm -rf yay
 
 # install configs and scripts
