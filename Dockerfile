@@ -1,4 +1,4 @@
-FROM archlinux:latest
+FROM docker.io/archlinux:latest
 MAINTAINER Emily Maré (emileet) <emileet@plsnobully.me>
 
 # variables
