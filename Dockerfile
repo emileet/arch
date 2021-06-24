@@ -6,7 +6,7 @@ ARG username=emileet
 
 # install useful packages
 RUN pacman -Syu --noconfirm && \
-    pacman -S base-devel devtools go nano pacman-contrib pigz reflector sudo zsh --needed --noconfirm && \
+    pacman -S base-devel devtools nano pacman-contrib pigz reflector sudo zsh --needed --noconfirm && \
     pacman -Scc --noconfirm
 
 # setup environment
@@ -22,9 +22,11 @@ RUN sudo -u $username sh -c 'yes | zsh -c "$(curl -fsSL https://raw.githubuserco
 
 # install yay
 RUN git clone https://aur.archlinux.org/yay.git && \
+    pacman -S go --noconfirm && \
     chown -R $username:$username yay && cd yay && \
     sudo -u $username makepkg -cfrs --noconfirm && \
     pacman -U *.pkg.tar.zst --noconfirm && \
+    pacman -Rs go --noconfirm && \
     rm /var/cache/pacman/pkg/* && \
     cd .. && rm -rf yay
 
