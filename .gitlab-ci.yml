@@ -1,10 +1,11 @@
+variables:
+  STORAGE_DRIVER: 'vfs'
+
 build:
-  image: archlinux:latest
+  image: quay.io/buildah/stable:latest
   stage: build
   before_script:
-    - pacman -Syu --noconfirm
-    - pacman -S buildah podman --noconfirm
-    - podman login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - buildah login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - buildah bud --pull -t "$CI_REGISTRY_IMAGE" .
     - buildah push "$CI_REGISTRY_IMAGE"
